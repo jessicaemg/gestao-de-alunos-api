@@ -4,7 +4,7 @@ import app from '../../src/app.js';
 
 describe('Login', () => {
     it('CT1 - Deve retornar 200 quando o usuário e senha estão corretos', async () =>{
-        const loginResposta = await request('http://localhost:3000')
+        const loginResposta = await request('app')
         .post('/api/auth/login')
         .set('Content-Type', 'application/json')
         .send({
@@ -17,7 +17,7 @@ describe('Login', () => {
 
 
     it('CT2 - Deve retornar 401 quando o usuário e senha estão incorretos', async () =>{
-        const loginResposta = await request('http://localhost:3000')
+        const loginResposta = await request('app')
         .post('/api/auth/login')
         .set('Content-Type', 'application/json')
         .send({
@@ -31,7 +31,7 @@ describe('Login', () => {
 
 
     it('CT3 - Deve retornar 400 quando o usuário e senha estão em branco', async () =>{
-        const loginResposta = await request('http://localhost:3000')
+        const loginResposta = await request('app')
         .post('/api/auth/login')
         .set('Content-Type', 'application/json')
         .send({
