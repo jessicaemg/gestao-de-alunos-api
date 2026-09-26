@@ -11,8 +11,8 @@ export async function TokenAdminEn() {
             .post('/api/auth/login')
             .set('Content-Type', 'application/json')
             .send({
-                email: process.env.ADMIN_EMAIL,
-                senha: process.env.ADMIN_SENHA
+                email: process.env.ADMIN_EMAIL || 'admin@escola.com',
+                senha: process.env.ADMIN_SENHA || 'admin123'
             });
         tokenCache = loginResposta.body.token;
     }
