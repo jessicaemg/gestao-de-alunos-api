@@ -3,11 +3,12 @@ import app from '../../src/app.js';
 import { expect } from 'chai';
 import { stub, restore } from 'sinon';
 import authService from '../../src/services/auth.service.js'
+import { api } from '../helpers/api.js'
 
 
 describe('Login', () => {
     it('CT1 - Deve retornar 200 quando o usuário e senha estão corretos', async () =>{
-        const loginResposta = await request(app)
+        const loginResposta = await api()
         .post('/api/auth/login')
         .set('Content-Type', 'application/json')
         .send({
@@ -20,7 +21,7 @@ describe('Login', () => {
 
 
     it('CT2 - Deve retornar 401 quando o usuário e senha estão incorretos', async () =>{
-        const loginResposta = await request(app)
+        const loginResposta = await api()
         .post('/api/auth/login')
         .set('Content-Type', 'application/json')
         .send({
@@ -34,7 +35,7 @@ describe('Login', () => {
 
 
     it('CT3 - Deve retornar 400 quando o usuário e senha estão em branco', async () =>{
-        const loginResposta = await request(app)
+        const loginResposta = await api()
         .post('/api/auth/login')
         .set('Content-Type', 'application/json')
         .send({
@@ -49,7 +50,7 @@ describe('Login', () => {
     it('CT4 - Deve retornar 500 erro de conexão com banco de dados', async () =>{
        const authServiceMock = stub(authService, 'login');
        authServiceMock.throws(new Error('ERROOOO DE BANCO DE DADOS'))
-        const loginResposta = await request(app)
+        const loginResposta = await api()
         .post('/api/auth/login')
         .set('Content-Type', 'application/json')
         .send({
