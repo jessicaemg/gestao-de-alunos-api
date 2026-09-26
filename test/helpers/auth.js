@@ -1,5 +1,7 @@
 import { api } from './api.js';
 import 'dotenv/config';
+import app from '../../src/app.js'
+
 
 let tokenCache = null;
 

@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { expect } from 'chai';
-
+import app from '../../src/app.js';
 
 describe('Login', () => {
     it('CT1 - Deve retornar 200 quando o usuário e senha estão corretos', async () =>{

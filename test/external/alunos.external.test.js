@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { expect } from 'chai';
 import { getToken } from '../helpers/auth.js'
-
+import app from '../../src/app.js';
 
 describe('Login', () => {
     let token;

@@ -1,5 +1,6 @@
 import { api } from '../helpers/api.js'
 import { expect } from 'chai';
+import app from '../../src/app.js';
 import { TokenAdminEn } from '../helpers/auth.js';
 import { novoAluno } from '../factories/alunosFactory.js';
 import { novaDisciplinas } from '../factories/disciplinasFactory.js';
