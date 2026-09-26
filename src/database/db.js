@@ -1,13 +1,31 @@
 import mongoose from 'mongoose';
-
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/gestao-de-alunos';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
 mongoose.connection.on('error', (err) => {
   console.error('Erro de conexão com o MongoDB:', err.message);
 });
 
-await mongoose.connect(MONGODB_URI);
+mongoose.connection.once('open', () => {
+  console.log('MongoDB conectado com sucesso!');
+});
 
-console.log(`MongoDB conectado em ${MONGODB_URI}`);
+async function connect() {
+  try {
+    // Se houver uma URI no .env, tenta usar
+    if (process.env.MONGODB_URI) {
+      await mongoose.connect(process.env.MONGODB_URI);
+    } else {
+      // Caso contrário, sobe o banco em memória automaticamente
+      const mongoServer = await MongoMemoryServer.create();
+      const mongoUri = mongoServer.getUri();
+      await mongoose.connect(mongoUri);
+      console.log('Servidor MongoDB em memória iniciado com sucesso!');
+    }
+  } catch (err) {
+    console.error('Falha ao conectar no MongoDB:', err.message);
+  }
+}
+
+await connect();
 
 export default mongoose;

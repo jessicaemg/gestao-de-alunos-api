@@ -1,0 +1,17 @@
+[
+    {
+        "testTitle": "Dado que ao cadastrar um aluno novo na disciplina deve da sucesso",
+        "dadosAluno": {
+            "nome": "Agnes Magalhães",
+            "email": "agnes.magalhaes7852@email.com",
+            "matricula": "8954878",
+            "senha": "12345"
+        },
+        "dadosDisciplina": {
+            "nome": "Programação",
+            "codigo": "326855",
+            "cargaHoraria": 90
+        }, 
+        "statusEsperado": 201
+    }
+]
