@@ -2,6 +2,7 @@ import request from 'supertest';
 import { expect } from 'chai';
 import { getToken } from '../helpers/auth.js'
 import app from '../../src/app.js';
+import { api } from '../helpers/api.js'
 
 describe('Login', () => {
     let token;
@@ -14,7 +15,7 @@ describe('Login', () => {
        const timestamp = Date.now();
        const emailEsperado = `davit${timestamp}@email.com`;
 
-        const cadastrarAlunoResposta = await request('http://localhost:3000')
+        const cadastrarAlunoResposta = await api()
             .post('/api/admin/alunos')
             .set('Content-Type', 'application/json')
             .set('Authorization', 'Bearer ' + token) 
@@ -34,7 +35,7 @@ describe('Login', () => {
         const token = await getToken('admin@escola.com', 'admin123')
         console.log(token);
 
-        const cadastrarAlunoResposta = await request('http://localhost:3000')
+        const cadastrarAlunoResposta = await api()
             .post('/api/admin/alunos')
             .set('Content-Type', 'application/json')
             .set('Authorization', 'Bearer ' + token) // Dica: adicionei o espaço após 'Bearer '
@@ -53,7 +54,7 @@ describe('Login', () => {
 
     it('CT3 - Deve fazer um get de busca pelo os alunos', async () => {
 
-        const buscarAlunoResposta = await request('http://localhost:3000')
+        const buscarAlunoResposta = await api()
             .get('/api/admin/alunos')
             .set('Authorization', 'Bearer ' + token) 
 
